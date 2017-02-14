@@ -6,7 +6,7 @@ import ItemsList from './ItemsList';
 
 const alwaysTrue = () => true;
 const emptyObject = {};
-const defaultRenderInputComponent = props => <input {...props} />;
+const defaultRenderInputComponent = props => <SimpleInput {...props} />;
 const defaultRenderItemsContainer = props => <div {...props} />;
 const defaultTheme = {
   container: 'react-autowhatever__container',
@@ -19,6 +19,15 @@ const defaultTheme = {
   sectionContainer: 'react-autowhatever__section-container',
   sectionTitle: 'react-autowhatever__section-title'
 };
+
+class SimpleInput extends Component {
+  shouldComponentUpdate(props) {
+    return this.props.value !== props.value;
+  }
+  render() {
+    return <input {...this.props} />;
+  }
+}
 
 export default class Autowhatever extends Component {
   static propTypes = {
